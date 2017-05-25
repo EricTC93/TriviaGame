@@ -24,6 +24,12 @@ var questionList = [
 ];
 
 var quesNum = -1;
+var quesPerRound = 5;
+var quesCount = 0;
+
+var correctCount = 0;
+var incorrectCount = 0;
+var unansweredCount = 0;
 
 var timeLimit = 30 //Seconds
 var timer = timeLimit;
@@ -52,6 +58,7 @@ function countdown () {
 function nextQuestion () {
 
 	quesNum++;
+	quesCount++;
 
 	if (quesNum === questionList.length) {
 		quesNum = 0;
@@ -76,16 +83,29 @@ function checkAnswer (response) {
 
 	if (response === "timeUp") {
 		console.log("Time Up")
+		unansweredCount++;
 	}
 
 	else if (response === ans) {
 		console.log("right");
+		correctCount++;
 	}
 
 	else {
 		console.log("wrong");
+		incorrectCount++;
 	}
 
-	nextQuestion(quesNum);
+	if (quesCount < quesPerRound ) {
+		nextQuestion(quesNum);
+	}
+
+	else {
+		$("#gameplay").hide();
+		$("#reultsScreen").show();
+		$("#correctCount").text(correctCount);
+		$("#incorrectCount").text(incorrectCount);
+		$("#unansweredCount").text(unansweredCount);
+	}
 }
 

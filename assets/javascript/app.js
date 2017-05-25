@@ -46,6 +46,19 @@ $(".answer").on("click",function() {
 	checkAnswer($(this).text());
 });
 
+$("#reset").on("click",function() {
+	quesNum = -1;
+	quesCount = 0;
+
+	correctCount = 0;
+	incorrectCount = 0;
+	unansweredCount = 0;
+
+	$("#reultsScreen").hide();
+	$("#gameplay").show();
+	nextQuestion();
+})
+
 function countdown () {
 	timer--;
 	$("#timeRemaining").text(timer);

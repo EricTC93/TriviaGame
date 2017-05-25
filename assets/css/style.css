@@ -1,6 +1,24 @@
+body {
+	background-color: #e6ffff;
+}
+
+.container {
+	background-color: #ccffcc;
+	height: 400px;
+	margin-top: 200px;
+}
+
 h1, h2, h3, p, img {
 	margin: 10px;
 }
+
+h1 {}
+
+h2 {}
+
+h3 {}
+
+p {}
 
 img {
 	min-height: 100px;
@@ -9,4 +27,24 @@ img {
 
 #gameplay, #responseScreen, #reultsScreen {
 	display: none;
+}
+
+#start, .answer, #reset {
+	margin: 10px auto;
+	width: 200px;
+	border: 1px solid green;
+	background-color: red;
+	color: white;
+}
+
+#start {
+	margin-top: 125px;
+}
+
+#reset {
+	margin-top: 100px;
+}
+
+#start:hover, .answer:hover, #reset:hover {
+	background-color: blue;
 }

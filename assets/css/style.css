@@ -1,7 +1,12 @@
-h1, h2, h3, p {
-	margin: 0px;
+h1, h2, h3, p, img {
+	margin: 10px;
 }
 
-#gameplay, #respnseList, #reultsScreen {
+img {
+	min-height: 100px;
+	width: auto;
+}
+
+#gameplay, #responseScreen, #reultsScreen {
 	display: none;
 }

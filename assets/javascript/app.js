@@ -12,13 +12,15 @@ var questionList = [
 	{
 		question: "What says Yes?",
 		possibleAnswers: ["no","nope","yes","no way"],
-		answer: 2
+		answer: 2,
+		img: ""
 	},
 
 	{
 		question: "What says Yes?",
 		possibleAnswers: ["no","nope","null","yes"],
-		answer: 3
+		answer: 3,
+		img: ""
 	}
 
 ];
@@ -34,6 +36,8 @@ var unansweredCount = 0;
 var timeLimit = 30 //Seconds
 var timer = timeLimit;
 var intervalId;
+
+var imageURL;
 
 $("#start").on("click",function() {
 	$("#start").hide();
@@ -93,32 +97,51 @@ function checkAnswer (response) {
 	clearInterval(intervalId);
 	var ansIndex = questionList[quesNum].answer;
 	var ans = questionList[quesNum].possibleAnswers[ansIndex];
+	$("#correctAnswer").text("The correct answer is " + ans)
+		.show();
 
 	if (response === "timeUp") {
 		console.log("Time Up")
 		unansweredCount++;
+		imageURL = "assets/images/sonicPointing.gif"
+		$("#response").text("Time Up");
 	}
 
 	else if (response === ans) {
 		console.log("right");
 		correctCount++;
+		imageURL = "assets/images/tailsVictory.gif"
+		$("#response").text("Correct");
+		$("#correctAnswer").hide();
 	}
 
 	else {
 		console.log("wrong");
 		incorrectCount++;
+		imageURL = "assets/images/knucklesLaugh.gif"
+		$("#response").text("Wrong");
 	}
 
-	if (quesCount < quesPerRound ) {
-		nextQuestion(quesNum);
-	}
+	$("#questionAnswer").hide();
+	$("#questionImage").attr("src",imageURL);
+	$("#responseScreen").show();
 
-	else {
-		$("#gameplay").hide();
-		$("#reultsScreen").show();
-		$("#correctCount").text(correctCount);
-		$("#incorrectCount").text(incorrectCount);
-		$("#unansweredCount").text(unansweredCount);
-	}
+
+	setTimeout(function() {
+
+		$("#responseScreen").hide();
+		$("#questionAnswer").show();
+
+		if (quesCount < quesPerRound ) {
+			nextQuestion(quesNum);
+		}
+
+		else {
+			$("#gameplay").hide();
+			$("#reultsScreen").show();
+			$("#correctCount").text(correctCount);
+			$("#incorrectCount").text(incorrectCount);
+			$("#unansweredCount").text(unansweredCount);
+		}
+	}, 7000);
 }
-

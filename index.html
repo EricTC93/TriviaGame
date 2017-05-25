@@ -14,20 +14,53 @@
 			<h1> ??? Trivia</h1>
 		</div>
 
-		<div class="row">
-			<p> Time Remaining: <span id="timeRemaining"></span> Seconds</p>
+		<div id="startScreen">
+			<h2 id="start">Start</h2>
 		</div>
 
-		<div class="row">
-			<p id="question">Ques</p>
+		<div id="gameplay">
+			<div class="row">
+				<h3> Time Remaining: <span id="timeRemaining"></span> Seconds</h3>
+			</div>
+			
+			<div id="questionAnswer">
+				<div class="row" id="questionRow">
+					<h3 id="question">Ques</h3>
+				</div>
+
+				<div class="row" id="answerRow">
+					<p class="answer" id="answerA">A</p>
+					<p class="answer" id="answerB">B</p>
+					<p class="answer" id="answerC">C</p>
+					<p class="answer" id="answerD">D</p>
+				</div>
+			</div>
+
+			<div id="responseList">
+				<div class="row">
+					<h3 id="response"></h3>
+				</div>
+
+				<div class="row">
+					<p id="correctAnswer"></p>
+				</div>
+
+				<div class="row">
+					<img id="questionImage" src="">
+				</div>
+			</div>
 		</div>
 
-		<div class="row">
-			<p class="answer" id="answerA">A</p>
-			<p class="answer" id="answerB">B</p>
-			<p class="answer" id="answerC">C</p>
-			<p class="answer" id="answerD">D</p>
+		<div id="reultsScreen">
+			<div class="row">
+				<h3>Here are the results</h3>
+				<p>Correct: <span id="correctCount"></span></p>
+				<p>Incorrect: <span id="incorrectCount"></span></p>
+				<p>Unanswered: <span id="unansweredCount"></span></p>
+				<h2 id="reset">Reset</h2>
+			</div>
 		</div>
+
 	</div>
 
 	<script src="assets/javascript/app.js"></script>

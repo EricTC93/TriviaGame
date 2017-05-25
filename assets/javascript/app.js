@@ -23,28 +23,65 @@ var questionList = [
 
 ];
 
-$("#question").text(questionList[0].question);
+var quesNum = -1;
 
-$("#answerA").text(questionList[0].possibleAnswers[0]);
-$("#answerB").text(questionList[0].possibleAnswers[1]);
-$("#answerC").text(questionList[0].possibleAnswers[2]);
-$("#answerD").text(questionList[0].possibleAnswers[3]);
+var timeLimit = 30 //Seconds
+var timer = timeLimit;
+var intervalId;
+
+nextQuestion(quesNum);
 
 $(".answer").on("click",function() {
 	console.log($(this).text());
+	checkAnswer($(this).text());
 });
-
-var timer = 30;
-var intervalId;
-$("#timeRemaining").text(timer);
-intervalId = setInterval(countdown,1000);
 
 function countdown () {
 	timer--;
 	$("#timeRemaining").text(timer);
 
 	if (timer === 0) {
-		clearInterval(intervalId);
+		checkAnswer("timeUp");
 	}
+}
+
+function nextQuestion () {
+
+	quesNum++;
+
+	if (quesNum === questionList.length) {
+		quesNum = 0;
+	}
+
+	$("#question").text(questionList[quesNum].question);
+
+	$("#answerA").text(questionList[quesNum].possibleAnswers[0]);
+	$("#answerB").text(questionList[quesNum].possibleAnswers[1]);
+	$("#answerC").text(questionList[quesNum].possibleAnswers[2]);
+	$("#answerD").text(questionList[quesNum].possibleAnswers[3]);
+
+	timer = timeLimit;
+	$("#timeRemaining").text(timer);
+	intervalId = setInterval(countdown,1000);
+}
+
+function checkAnswer (response) {
+	clearInterval(intervalId);
+	var ansIndex = questionList[quesNum].answer;
+	var ans = questionList[quesNum].possibleAnswers[ansIndex];
+
+	if (response === "timeUp") {
+		console.log("Time Up")
+	}
+
+	else if (response === ans) {
+		console.log("right");
+	}
+
+	else {
+		console.log("wrong");
+	}
+
+	nextQuestion(quesNum);
 }
 

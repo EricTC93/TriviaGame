@@ -19,3 +19,7 @@ $("#answerA").text(questionList[0].possibleAnswers[0]);
 $("#answerB").text(questionList[0].possibleAnswers[1]);
 $("#answerC").text(questionList[0].possibleAnswers[2]);
 $("#answerD").text(questionList[0].possibleAnswers[3]);
+
+$(".answer").on("click",function() {
+	console.log($(this).text());
+});

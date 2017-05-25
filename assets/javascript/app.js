@@ -29,7 +29,11 @@ var timeLimit = 30 //Seconds
 var timer = timeLimit;
 var intervalId;
 
-nextQuestion(quesNum);
+$("#start").on("click",function() {
+	$("#start").hide();
+	$("#gameplay").show();
+	nextQuestion(quesNum);
+})
 
 $(".answer").on("click",function() {
 	console.log($(this).text());

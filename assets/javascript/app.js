@@ -17,9 +17,30 @@ var questionList = [
 	},
 
 	{
-		question: "What says Yes?",
-		possibleAnswers: ["no","nope","null","yes"],
+		question: "Which of the original 6 characters is no longer playable in Mario Party?",
+		possibleAnswers: ["Toad","Daisy","Waluigi","Donkey Kong"],
 		answer: 3,
+		img: ""
+	},
+
+	{
+		question: "What's a pokemon that only appears as a pure flying type?",
+		possibleAnswers: ["Flygon","Tornadus","Pidgeot","Sivalley"],
+		answer: 1,
+		img: ""
+	},
+
+	{
+		question: "What was Cream the Rabbit's first appearance?",
+		possibleAnswers: ["Sonin Advance 2","Sonic Adventure 2","Sonic Battle","Sonic Rush"],
+		answer: 0,
+		img: ""
+	},
+
+	{
+		question: "What says Yes?",
+		possibleAnswers: ["no","yes","null","yooo"],
+		answer: 1,
 		img: ""
 	}
 
@@ -143,5 +164,5 @@ function checkAnswer (response) {
 			$("#incorrectCount").text(incorrectCount);
 			$("#unansweredCount").text(unansweredCount);
 		}
-	}, 7000);
+	}, 5000);
 }

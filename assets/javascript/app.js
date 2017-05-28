@@ -11,21 +11,21 @@
 var questionList = [
 	{
 		question: "Who is the protagonist of the 4th game in the Ace Attorney series?",
-		possibleAnswers: ["Athena Cykes","Phoenix Wright","Apollo Justice","Ray Shields"],
+		possibleAnswers: ["Apollo Justice","Athena Cykes","Phoenix Wright","Ray Shields"],
 		answer: "Apollo Justice",
 		img: "https://vignette3.wikia.nocookie.net/aceattorney/images/5/54/Apollo_Embarrassed_3.gif/revision/latest?cb=20120904191913"
 	},
 
 	{
-		question: "Which of the original 6 characters from Mario Party is not playable in every sequel?",
-		possibleAnswers: ["Toad","Daisy","Waluigi","Donkey Kong"],
+		question: "Which of the original 6 characters from Mario Party (1) is not playable in every sequel?",
+		possibleAnswers: ["Donkey Kong","Toad","Waluigi","Wario"],
 		answer: "Donkey Kong",
 		img: "assets/images/dkMarioPartyWin.gif"
 	},
 
 	{
 		question: "What's a pokemon that only appears as a pure flying type?",
-		possibleAnswers: ["Flygon","Tornadus","Pidgeot","Sivally"],
+		possibleAnswers: ["Flygon","Pidgeot","Sivally","Tornadus"],
 		answer: "Tornadus",
 		img: "assets/images/641TornadusGen5.gif"
 	},
@@ -39,26 +39,63 @@ var questionList = [
 
 	{
 		question: "Who is the leader of red team from the Halo based web series, Red vs. Blue?",
-		possibleAnswers: ["Church","Sarge","Doc","Washington"],
+		possibleAnswers: ["Church","Doc","Sarge","Washington"],
 		answer: "Sarge",
 		img: "https://media.giphy.com/media/yYeAHaB8NYaXu/giphy.gif"
 	},
 
 	{
 		question: "Besides Dr. Eggman, who is a major antagonist in Sonic the Hedgehog 3?",
-		possibleAnswers: ["Knuckles","Metal Sonic","Shadow","Chaos"],
+		possibleAnswers: ["Chaos","Knuckles","Metal Sonic","Shadow"],
 		answer: "Knuckles",
 		img: "assets/images/knucklesLaugh.gif"
 	},
 
 	{
 		question: "Which is the first Fire Emblem to be released in the US?",
-		possibleAnswers: ["Binding Blade","Shadow Dragon","Sacred Stones","Blazing Blade"],
+		possibleAnswers: ["Blazing Blade","Binding Blade","Sacred Stones","Shadow Dragon"],
 		answer: "Blazing Blade",
 		img: "https://vignette1.wikia.nocookie.net/fireemblem/images/f/fc/Eliwood_knightlord_durandal_critical.gif/revision/latest?cb=20120201034953"
+	},
+
+	{
+		question: "Who's Mario first partner in Paper Mario: The Thousand Year Door?",
+		possibleAnswers: ["Goombella","Goombaria","Goombangela","Goobmama"],
+		answer: "Goombella",
+		img: "https://media.giphy.com/media/pyhzil2FDtGwM/giphy.gif"
+	},
+
+	{
+		question: "Which Kong duo were the protagonists of Donkey Kong Country 2?",
+		possibleAnswers: ["Donkey and Diddy","Diddy and Dixie","Dixie and Baby","Donkey and Dixie"],
+		answer: "Diddy and Dixie",
+		img: "https://media.giphy.com/media/XQjAAqvEwSdA4/giphy.gif"
+	},
+
+	{
+		question: "Who represents kindness in Mario Party 3?",
+		possibleAnswers: ["Daisy","Mario","Peach","Yoshi"],
+		answer: "Yoshi",
+		img: "https://media.giphy.com/media/n7QA2wItASTWE/giphy.gif"
+	},
+
+	{
+		question: "What is the default name for the player's avatar in Fire Emblem Awakening?",
+		possibleAnswers: ["Alex","Corrin","Reflect","Robin"],
+		answer: "Robin",
+		img: "https://vignette1.wikia.nocookie.net/fireemblem/images/3/39/Robin_SSB4.png/revision/latest?cb=20160516080711"
+	},
+
+	{
+		question: "Who is the female member of Team Dark from the Sonic series?",
+		possibleAnswers: ["Amy","Blaze","Shade","Rouge"],
+		answer: "Rouge",
+		img: "https://media.giphy.com/media/J1JGyqiQ9BRYY/giphy.gif"
 	}
 
 ];
+
+swapElements(questionList);
 
 var quesNum = Math.floor(Math.random()*questionList.length);
 var quesPerRound = 5;
@@ -78,7 +115,7 @@ var quesImage;
 var j = 0;
 
 setInterval(function(){
-	if (j === -900) {
+	if (j === -1800) {
 		j = 0;
 	}
 
@@ -138,7 +175,7 @@ function nextQuestion () {
 
 	$("#question").text(questionList[quesNum].question);
 
-	var answerDisArr = swapAnswers(questionList[quesNum].possibleAnswers);
+	var answerDisArr = swapElements(questionList[quesNum].possibleAnswers);
 	$("#answerA").text(answerDisArr[0]);
 	$("#answerB").text(answerDisArr[1]);
 	$("#answerC").text(answerDisArr[2]);
@@ -202,7 +239,7 @@ function checkAnswer (response) {
 	}, 5000);
 }
 
-function swapAnswers (arr) {
+function swapElements (arr) {
 
 	for (var i = 0; i <64; i++) {
 		var a = Math.floor(Math.random()*arr.length);

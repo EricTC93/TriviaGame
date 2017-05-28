@@ -217,7 +217,7 @@ function nextQuestion () {
 function checkAnswer (response) {
 	clearInterval(intervalId);
 	var ans = questionList[quesNum].answer;
-	$("#correctAnswer").text("The correct answer was " + ans)
+	$("#correctAnswer").html("The correct answer was <strong>" + ans + "</strong>")
 		.show();
 
 	// User ran out of time
@@ -236,7 +236,6 @@ function checkAnswer (response) {
 
 	// User is incorrect
 	else {
-		console.log("wrong");
 		incorrectCount++;
 		$("#response").text("Wrong");
 	}

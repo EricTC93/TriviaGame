@@ -137,7 +137,7 @@ var scrollCounter = 0;
 
 // Creates scrolling effect
 setInterval(function(){
-	if (scrollCounter < -889) {
+	if (scrollCounter <= -889) {
 		scrollCounter = 0;
 	}
 

@@ -1,7 +1,7 @@
 // Create a list of questions
 // User clicks start button
 // Display question to the user and timer
-// User attemps to answer the question with a click
+// User attempts to answer the question with a click
 // Tells the user if they are correct or incorrect
 // Moves to the next question with a new timer
 // Ends the game after a certain amount of questions
@@ -24,7 +24,7 @@ var questionList = [
 	},
 
 	{
-		question: "What's a pokemon that only appears as a pure flying type?",
+		question: "What's the pokemon that only appears as a pure flying type?",
 		possibleAnswers: ["Flygon","Pidgeot","Sivally","Tornadus"],
 		answer: "Tornadus",
 		img: "assets/images/641TornadusGen5.gif"
@@ -94,14 +94,14 @@ var questionList = [
 	},
 
 	{
-		question: "Which if these is the second generation fire starter?",
+		question: "Which if these is the second-generation fire starter?",
 		possibleAnswers: ["Charmander","Chimchar","Cyndaquil","Torchic"],
 		answer: "Cyndaquil",
 		img: "https://img.pokemondb.net/sprites/black-white/anim/normal/cyndaquil.gif"
 	},
 
 	{
-		question: "Who is the 4th prosecutor Phoenix faces in the Ace Atorney Series?",
+		question: "Who is the 4th prosecutor Phoenix faces in the Ace Attorney Series?",
 		possibleAnswers: ["Edgeworth","Franziska","Godot","Manfred"],
 		answer: "Franziska",
 		img: "https://ragingscythe.files.wordpress.com/2014/03/aai_franziska_von_karma_courtesy.gif"
@@ -174,7 +174,7 @@ $("#reset").on("click",function() {
 	nextQuestion();
 })
 
-// Countdown the timer and dispays it to the user
+// Countdown the timer and displays it to the user
 function countdown () {
 	timer--;
 	$("#timeRemaining").text(timer);

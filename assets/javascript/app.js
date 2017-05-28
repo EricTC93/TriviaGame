@@ -10,8 +10,8 @@
 
 var questionList = [
 	{
-		question: "Who is the prtagonist of the 4th game in the Ace Attorney series?",
-		possibleAnswers: ["Athena Cykes","Phoniex Wright","Apollo Justice","Ray Shields"],
+		question: "Who is the protagonist of the 4th game in the Ace Attorney series?",
+		possibleAnswers: ["Athena Cykes","Phoenix Wright","Apollo Justice","Ray Shields"],
 		answer: 2,
 		img: "https://vignette3.wikia.nocookie.net/aceattorney/images/5/54/Apollo_Embarrassed_3.gif/revision/latest?cb=20120904191913"
 	},
@@ -45,7 +45,7 @@ var questionList = [
 	},
 
 	{
-		question: "Who, besides Dr. Eggman, is a major antagonist in Sonic the Hedgehog 3",
+		question: "Besides Dr. Eggman, who is a major antagonist in Sonic the Hedgehog 3?",
 		possibleAnswers: ["Knuckles","Metal Sonic","Shadow","Chaos"],
 		answer: 0,
 		img: "assets/images/knucklesLaugh.gif"
@@ -67,6 +67,21 @@ var intervalId;
 
 // var imageURL = "";
 var quesImage;
+
+var j = 0;
+
+setInterval(function(){
+	if (j === -900) {
+		j = 0;
+	}
+
+	var style = "url(assets/images/checkered3.png) right bottom " + --j + "px repeat-y, " +
+				"url(assets/images/checkered3.png) left top " + --j + "px repeat-y, " + 
+				"url(assets/images/checkered.png) repeat";
+
+	$("#body").css("background", style);
+
+},10);
 
 $("#start").on("click",function() {
 	$("#start").hide();
@@ -130,7 +145,7 @@ function checkAnswer (response) {
 	clearInterval(intervalId);
 	var ansIndex = questionList[quesNum].answer;
 	var ans = questionList[quesNum].possibleAnswers[ansIndex];
-	$("#correctAnswer").text("The correct answer is " + ans)
+	$("#correctAnswer").text("The correct answer was " + ans)
 		.show();
 
 	if (response === "timeUp") {

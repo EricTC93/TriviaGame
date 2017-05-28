@@ -109,7 +109,7 @@ var questionList = [
 
 	{
 		question: "What's the final evolution of the grass type Pokemon, Snivy?",
-		possibleAnswers: ["Serperior","Servine","Seviper","Serpant"],
+		possibleAnswers: ["Serperior","Servine","Seviper","Serpent"],
 		answer: "Serperior",
 		img: "https://img.pokemondb.net/sprites/black-white-2/anim/normal/serperior.gif"
 	}

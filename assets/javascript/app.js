@@ -53,7 +53,7 @@ var questionList = [
 
 ];
 
-var quesNum = -1;
+var quesNum = Math.floor(Math.random()*questionList.length);
 var quesPerRound = 5;
 var quesCount = 0;
 
@@ -80,7 +80,7 @@ $(".answer").on("click",function() {
 });
 
 $("#reset").on("click",function() {
-	quesNum = -1;
+	// quesNum = -1;
 	quesCount = 0;
 
 	correctCount = 0;
@@ -136,7 +136,7 @@ function checkAnswer (response) {
 	if (response === "timeUp") {
 		console.log("Time Up")
 		unansweredCount++;
-		// imageURL = "assets/images/sonicPointing.gif"
+		quesImage.src = "assets/images/sonicPointing.gif"
 		$("#response").text("Time Up");
 	}
 

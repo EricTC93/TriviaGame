@@ -91,6 +91,20 @@ var questionList = [
 		possibleAnswers: ["Amy","Blaze","Shade","Rouge"],
 		answer: "Rouge",
 		img: "https://media.giphy.com/media/J1JGyqiQ9BRYY/giphy.gif"
+	},
+
+	{
+		question: "Which if these is the second generation fire starter?",
+		possibleAnswers: ["Charmander","Chimchar","Cyndaquil","Torchic"],
+		answer: "Cyndaquil",
+		img: "https://img.pokemondb.net/sprites/black-white/anim/normal/cyndaquil.gif"
+	},
+
+	{
+		question: "Who is the 4th prosecutor Phoenix faces in the Ace Atorney Series?",
+		possibleAnswers: ["Edgeworth","Franziska","Godot","Manfred"],
+		answer: "Franziska",
+		img: "https://ragingscythe.files.wordpress.com/2014/03/aai_franziska_von_karma_courtesy.gif"
 	}
 
 ];

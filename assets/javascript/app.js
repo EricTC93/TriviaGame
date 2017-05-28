@@ -10,38 +10,45 @@
 
 var questionList = [
 	{
-		question: "What says Yes?",
-		possibleAnswers: ["no","nope","yes","no way"],
+		question: "Who is the prtagonist of the 4th game in the Ace Attorney series?",
+		possibleAnswers: ["Athena Cykes","Phoniex Wright","Apollo Justice","Ray Shields"],
 		answer: 2,
-		img: ""
+		img: "https://vignette3.wikia.nocookie.net/aceattorney/images/5/54/Apollo_Embarrassed_3.gif/revision/latest?cb=20120904191913"
 	},
 
 	{
-		question: "Which of the original 6 characters is no longer playable in Mario Party?",
+		question: "Which of the original 6 characters from Mario Party is not playable in every sequel?",
 		possibleAnswers: ["Toad","Daisy","Waluigi","Donkey Kong"],
 		answer: 3,
-		img: ""
+		img: "assets/images/dkMarioPartyWin.gif"
 	},
 
 	{
 		question: "What's a pokemon that only appears as a pure flying type?",
-		possibleAnswers: ["Flygon","Tornadus","Pidgeot","Sivalley"],
+		possibleAnswers: ["Flygon","Tornadus","Pidgeot","Sivally"],
 		answer: 1,
-		img: ""
+		img: "assets/images/641TornadusGen5.gif"
 	},
 
 	{
 		question: "What was Cream the Rabbit's first appearance?",
-		possibleAnswers: ["Sonin Advance 2","Sonic Adventure 2","Sonic Battle","Sonic Rush"],
+		possibleAnswers: ["Sonic Advance 2","Sonic Adventure 2","Sonic Battle","Sonic Rush"],
 		answer: 0,
-		img: ""
+		img: "assets/images/creamSelect.gif"
 	},
 
 	{
-		question: "What says Yes?",
-		possibleAnswers: ["no","yes","null","yooo"],
+		question: "Who is the leader of red team from the Halo based web series, Red vs. Blue?",
+		possibleAnswers: ["Church","Sarge","Doc","Washington"],
 		answer: 1,
-		img: ""
+		img: "https://media.giphy.com/media/yYeAHaB8NYaXu/giphy.gif"
+	},
+
+	{
+		question: "Who, besides Dr. Eggman, is a major antagonist in Sonic the Hedgehog 3",
+		possibleAnswers: ["Knuckles","Metal Sonic","Shadow","Chaos"],
+		answer: 0,
+		img: "assets/images/knucklesLaugh.gif"
 	}
 
 ];
@@ -58,7 +65,8 @@ var timeLimit = 30 //Seconds
 var timer = timeLimit;
 var intervalId;
 
-var imageURL;
+// var imageURL = "";
+var quesImage;
 
 $("#start").on("click",function() {
 	$("#start").hide();
@@ -102,6 +110,10 @@ function nextQuestion () {
 		quesNum = 0;
 	}
 
+	quesImage = new Image();
+	quesImage.src = questionList[quesNum].img;
+	// console.log(quesImage);
+
 	$("#question").text(questionList[quesNum].question);
 
 	$("#answerA").text(questionList[quesNum].possibleAnswers[0]);
@@ -124,14 +136,14 @@ function checkAnswer (response) {
 	if (response === "timeUp") {
 		console.log("Time Up")
 		unansweredCount++;
-		imageURL = "assets/images/sonicPointing.gif"
+		// imageURL = "assets/images/sonicPointing.gif"
 		$("#response").text("Time Up");
 	}
 
 	else if (response === ans) {
 		console.log("right");
 		correctCount++;
-		imageURL = "assets/images/tailsVictory.gif"
+		// imageURL = "assets/images/tailsVictory.gif"
 		$("#response").text("Correct");
 		$("#correctAnswer").hide();
 	}
@@ -139,12 +151,13 @@ function checkAnswer (response) {
 	else {
 		console.log("wrong");
 		incorrectCount++;
-		imageURL = "assets/images/knucklesLaugh.gif"
+		// imageURL = "assets/images/knucklesLaugh.gif"
 		$("#response").text("Wrong");
 	}
 
 	$("#questionAnswer").hide();
-	$("#questionImage").attr("src",imageURL);
+	// $("#questionImage").attr("src",imageURL);
+	$("#questionImageRow").html(quesImage);
 	$("#responseScreen").show();
 
 

@@ -7,7 +7,7 @@
 // Ends the game after a certain amount of questions
 // Reset
 
-
+// List of Questions with their possible answers
 var questionList = [
 	{
 		question: "Who is the protagonist of the 4th game in the Ace Attorney series?",
@@ -105,12 +105,20 @@ var questionList = [
 		possibleAnswers: ["Edgeworth","Franziska","Godot","Manfred"],
 		answer: "Franziska",
 		img: "https://ragingscythe.files.wordpress.com/2014/03/aai_franziska_von_karma_courtesy.gif"
+	},
+
+	{
+		question: "What's the final evolution of the grass type Pokemon, Snivy?",
+		possibleAnswers: ["Serperior","Servine","Seviper","Serpant"],
+		answer: "Serperior",
+		img: "https://img.pokemondb.net/sprites/black-white-2/anim/normal/serperior.gif"
 	}
 
 ];
 
-swapElements(questionList);
+shuffleElements(questionList); // Swaps the questions around
 
+// Declaring Variables
 var quesNum = Math.floor(Math.random()*questionList.length);
 var quesPerRound = 5;
 var quesCount = 0;
@@ -123,37 +131,38 @@ var timeLimit = 30 //Seconds
 var timer = timeLimit;
 var intervalId;
 
-// var imageURL = "";
 var quesImage;
 
-var j = 0;
+var scrollCounter = 0;
 
+// Creates scrolling effect
 setInterval(function(){
-	if (j === -1800) {
-		j = 0;
+	if (scrollCounter < -14400) {
+		scrollCounter = 0;
 	}
 
-	var style = "url(assets/images/checkered3.png) right bottom " + --j + "px repeat-y, " +
-				"url(assets/images/checkered3.png) left top " + --j + "px repeat-y, " + 
+	var style = "url(assets/images/checkered3.png) right bottom " + --scrollCounter + "px repeat-y, " +
+				"url(assets/images/checkered3.png) left top " + --scrollCounter + "px repeat-y, " + 
 				"url(assets/images/checkered.png) repeat";
 
 	$("#body").css("background", style);
 
 },10);
 
+// User starts the game
 $("#start").on("click",function() {
 	$("#start").hide();
 	$("#gameplay").show();
 	nextQuestion(quesNum);
 })
 
+// User picks an answer
 $(".answer").on("click",function() {
-	console.log($(this).text());
 	checkAnswer($(this).text());
 });
 
+// User resets the game and its parameter
 $("#reset").on("click",function() {
-	// quesNum = -1;
 	quesCount = 0;
 
 	correctCount = 0;
@@ -165,15 +174,18 @@ $("#reset").on("click",function() {
 	nextQuestion();
 })
 
+// Countdown the timer and dispays it to the user
 function countdown () {
 	timer--;
 	$("#timeRemaining").text(timer);
 
+	// User ran out of time to answer the question
 	if (timer === 0) {
 		checkAnswer("timeUp");
 	}
 }
 
+// Moves to the next question
 function nextQuestion () {
 
 	quesNum++;
@@ -185,64 +197,66 @@ function nextQuestion () {
 
 	quesImage = new Image();
 	quesImage.src = questionList[quesNum].img;
-	// console.log(quesImage);
 
 	$("#question").text(questionList[quesNum].question);
 
-	var answerDisArr = swapElements(questionList[quesNum].possibleAnswers);
+	// Displays the possible answers
+	var answerDisArr = shuffleElements(questionList[quesNum].possibleAnswers);
 	$("#answerA").text(answerDisArr[0]);
 	$("#answerB").text(answerDisArr[1]);
 	$("#answerC").text(answerDisArr[2]);
 	$("#answerD").text(answerDisArr[3]);
 
+	// Starts the timer
 	timer = timeLimit;
 	$("#timeRemaining").text(timer);
 	intervalId = setInterval(countdown,1000);
 }
 
+// See if the user picks the right answer and responds accordingly
 function checkAnswer (response) {
 	clearInterval(intervalId);
 	var ans = questionList[quesNum].answer;
 	$("#correctAnswer").text("The correct answer was " + ans)
 		.show();
 
+	// User ran out of time
 	if (response === "timeUp") {
-		console.log("Time Up")
 		unansweredCount++;
 		quesImage.src = "assets/images/sonicPointing.gif"
 		$("#response").text("Time Up");
 	}
 
+	// User is correct
 	else if (response === ans) {
-		console.log("right");
 		correctCount++;
-		// imageURL = "assets/images/tailsVictory.gif"
 		$("#response").text("Correct");
 		$("#correctAnswer").hide();
 	}
 
+	// User is incorrect
 	else {
 		console.log("wrong");
 		incorrectCount++;
-		// imageURL = "assets/images/knucklesLaugh.gif"
 		$("#response").text("Wrong");
 	}
 
 	$("#questionAnswer").hide();
-	// $("#questionImage").attr("src",imageURL);
 	$("#questionImageRow").html(quesImage);
 	$("#responseScreen").show();
 
-
+	// Shows the response to the user
 	setTimeout(function() {
 
 		$("#responseScreen").hide();
 		$("#questionAnswer").show();
 
+		// Moves on to the next question
 		if (quesCount < quesPerRound ) {
 			nextQuestion(quesNum);
 		}
 
+		// Ends the game
 		else {
 			$("#gameplay").hide();
 			$("#reultsScreen").show();
@@ -250,10 +264,11 @@ function checkAnswer (response) {
 			$("#incorrectCount").text(incorrectCount);
 			$("#unansweredCount").text(unansweredCount);
 		}
-	}, 5000);
+	}, 7000);
 }
 
-function swapElements (arr) {
+// Shuffles the elements of an array
+function shuffleElements (arr) {
 
 	for (var i = 0; i <64; i++) {
 		var a = Math.floor(Math.random()*arr.length);

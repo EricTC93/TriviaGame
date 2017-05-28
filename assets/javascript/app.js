@@ -12,43 +12,50 @@ var questionList = [
 	{
 		question: "Who is the protagonist of the 4th game in the Ace Attorney series?",
 		possibleAnswers: ["Athena Cykes","Phoenix Wright","Apollo Justice","Ray Shields"],
-		answer: 2,
+		answer: "Apollo Justice",
 		img: "https://vignette3.wikia.nocookie.net/aceattorney/images/5/54/Apollo_Embarrassed_3.gif/revision/latest?cb=20120904191913"
 	},
 
 	{
 		question: "Which of the original 6 characters from Mario Party is not playable in every sequel?",
 		possibleAnswers: ["Toad","Daisy","Waluigi","Donkey Kong"],
-		answer: 3,
+		answer: "Donkey Kong",
 		img: "assets/images/dkMarioPartyWin.gif"
 	},
 
 	{
 		question: "What's a pokemon that only appears as a pure flying type?",
 		possibleAnswers: ["Flygon","Tornadus","Pidgeot","Sivally"],
-		answer: 1,
+		answer: "Tornadus",
 		img: "assets/images/641TornadusGen5.gif"
 	},
 
 	{
 		question: "What was Cream the Rabbit's first appearance?",
 		possibleAnswers: ["Sonic Advance 2","Sonic Adventure 2","Sonic Battle","Sonic Rush"],
-		answer: 0,
+		answer: "Sonic Advance 2",
 		img: "assets/images/creamSelect.gif"
 	},
 
 	{
 		question: "Who is the leader of red team from the Halo based web series, Red vs. Blue?",
 		possibleAnswers: ["Church","Sarge","Doc","Washington"],
-		answer: 1,
+		answer: "Sarge",
 		img: "https://media.giphy.com/media/yYeAHaB8NYaXu/giphy.gif"
 	},
 
 	{
 		question: "Besides Dr. Eggman, who is a major antagonist in Sonic the Hedgehog 3?",
 		possibleAnswers: ["Knuckles","Metal Sonic","Shadow","Chaos"],
-		answer: 0,
+		answer: "Knuckles",
 		img: "assets/images/knucklesLaugh.gif"
+	},
+
+	{
+		question: "Which is the first Fire Emblem to be released in the US?",
+		possibleAnswers: ["Binding Blade","Shadow Dragon","Sacred Stones","Blazing Blade"],
+		answer: "Blazing Blade",
+		img: "https://vignette1.wikia.nocookie.net/fireemblem/images/f/fc/Eliwood_knightlord_durandal_critical.gif/revision/latest?cb=20120201034953"
 	}
 
 ];
@@ -131,10 +138,11 @@ function nextQuestion () {
 
 	$("#question").text(questionList[quesNum].question);
 
-	$("#answerA").text(questionList[quesNum].possibleAnswers[0]);
-	$("#answerB").text(questionList[quesNum].possibleAnswers[1]);
-	$("#answerC").text(questionList[quesNum].possibleAnswers[2]);
-	$("#answerD").text(questionList[quesNum].possibleAnswers[3]);
+	var answerDisArr = swapAnswers(questionList[quesNum].possibleAnswers);
+	$("#answerA").text(answerDisArr[0]);
+	$("#answerB").text(answerDisArr[1]);
+	$("#answerC").text(answerDisArr[2]);
+	$("#answerD").text(answerDisArr[3]);
 
 	timer = timeLimit;
 	$("#timeRemaining").text(timer);
@@ -143,8 +151,7 @@ function nextQuestion () {
 
 function checkAnswer (response) {
 	clearInterval(intervalId);
-	var ansIndex = questionList[quesNum].answer;
-	var ans = questionList[quesNum].possibleAnswers[ansIndex];
+	var ans = questionList[quesNum].answer;
 	$("#correctAnswer").text("The correct answer was " + ans)
 		.show();
 
@@ -193,4 +200,17 @@ function checkAnswer (response) {
 			$("#unansweredCount").text(unansweredCount);
 		}
 	}, 5000);
+}
+
+function swapAnswers (arr) {
+
+	for (var i = 0; i <64; i++) {
+		var a = Math.floor(Math.random()*arr.length);
+		var b = Math.floor(Math.random()*arr.length);
+		var temp = arr[a];
+		arr[a] = arr[b];
+		arr[b] = temp;
+	}
+
+	return arr;
 }
